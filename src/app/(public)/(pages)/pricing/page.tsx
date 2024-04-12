@@ -1,0 +1,9 @@
+import React from 'react'
+
+const Pricing = () => {
+  return (
+    <div className='container pt-24'>Pricing</div>
+  )
+}
+
+export default Pricing
