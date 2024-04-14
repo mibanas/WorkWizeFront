@@ -5,7 +5,7 @@ import { logoPrincipalSection } from '../../constants/logoPrincipalSectio'
 const About = () => {
   return (
     <>
-      <main className="container h-[910px] pt-24 lg:pt-28 antialiased bg-[#f8f3ed]">
+      <main className="container h-[910px]  antialiased bg-[#f8f3ed]">
         <div className="relative">
           {/* about section */}
           <section className="relative container flex flex-col justify-center items-center w-full h-[810px] md:flex-row md:justify-between md:mt-10 text-[#241d22] font-montserrat">
@@ -22,11 +22,11 @@ const About = () => {
               className="w-full mx-3 md:w-1/2 mt-8 md:mt-0"
             />
             {/* Icone en arrière-plan */}
-            <ImageWithIcons images={logoPrincipalSection} />
+            {/* <ImageWithIcons images={logoPrincipalSection} /> */}
           </section>
 
           {/* logo section */}
-          <section className='mt-24'>
+          <section className=''>
             {/* <LogoSection logos={logos} /> */}
           </section>
         </div>
