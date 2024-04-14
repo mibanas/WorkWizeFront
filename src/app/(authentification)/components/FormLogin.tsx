@@ -17,13 +17,8 @@ import { RootState } from '@/GlobalRedux/Store/store';
 
 const FormLogin = () => {
     const [showPassword, setShowPassword] = useState(false);
-
-    const loading = useSelector((state:  RootState ) => state.authentification.loading);
-    const loginError = useSelector((state: RootState ) => state.authentification.errors?.message);
-
-    console.log('loginError : ',loginError);
-    
     const router = useRouter();
+    const loginError = useSelector((state: RootState ) => state.authentification.errors?.message);    
     const dispatch = useDispatch<AppDispatch>()
 
     const togglePasswordVisibility = () => {
@@ -46,24 +41,20 @@ const FormLogin = () => {
         const email = (target.elements.namedItem('email') as HTMLInputElement)?.value.trim();
         const password = (target.elements.namedItem('password') as HTMLInputElement)?.value;
     
-        if (!email || !password) {
-          setError('Merci de remplir tous les champs');
-          return;
-        }
-    
         const data = {
           email: email,
           password: password
         };
                 
         try {
-          await dispatch(loginUser(data)); // Assuming loginUser dispatches actions
-          // Handle successful login (e.g., redirect)
+            const login = await dispatch(loginUser(data));
+            if(login.payload.success) {
+                router.push("/");
+            }
         } catch (error) {
-          console.error('Login error:', error);
+            console.error('Login error:', error);
         }
       }
-
 
     return (
         <div className="h-screen">
@@ -120,19 +111,12 @@ const FormLogin = () => {
                         <div className="mb-4 bg-red-200 text-red-800 p-2">{loginError}</div>
                     )}                    
                     
-                    {/* <button
-                        type="submit"
-                        disabled={!loading}
-                        className={`bg-[#f8f3ed] border-l-8 border-l-[#173e5d] py-2 px-4 hover:bg-[#173e5d] hover:border-l-[#efa34a] hover:text-white transition-colors duration-300 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
-                    >
-                        {!loading ? 'Connexion en cours...' : 'Connexion'}
-                    </button> */}
 
                     <button
                         type="submit"
                         className="bg-[#f8f3ed] border-l-8 border-l-[#173e5d] py-2 px-4 hover:bg-[#173e5d] hover:border-l-[#efa34a] hover:text-white transition-colors duration-300"
                     >
-                        S'inscrire
+                        Login
                     </button>
 
 

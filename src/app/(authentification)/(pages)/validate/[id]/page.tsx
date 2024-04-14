@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 
 const ValidateAcount = ({ params }: { params: { id: string } }) => {
@@ -21,9 +20,7 @@ const ValidateAcount = ({ params }: { params: { id: string } }) => {
             } else {
 
                 const data = await response.json();
-                if (!data.success) {
-                    console.log("🚀 ~ fetchData ~ false data:", data)
-                    
+                if (!data.success) {                    
                     setError(true);
                     setErrorMessage(data.message);
                 } 
@@ -43,7 +40,6 @@ const ValidateAcount = ({ params }: { params: { id: string } }) => {
             if (id) {
                 fetchData();
             } else {
-                console.log('here');
                 
                 setError(true);
                 setErrorMessage('ID de compte manquant dans les paramètres d\'URL');

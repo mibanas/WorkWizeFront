@@ -67,7 +67,7 @@ const FormRegister = () => {
                         errorMessage = 'Un compte avec cet email existe déjà.';
                         toast.error(errorMessage);
 
-                    } else if (response.status === 400) {
+                    } else if (response.status === 400) {                        
                         errorMessage = responseData.error;
                         toast.error(errorMessage);
                     }
@@ -82,7 +82,6 @@ const FormRegister = () => {
         
             } catch (error: any) {        
                 console.log(error.message);
-                        
                 setError(error.message);
             }
         }
